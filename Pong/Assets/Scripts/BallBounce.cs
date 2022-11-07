@@ -9,7 +9,7 @@ public class BallBounce : MonoBehaviour
     public float volume = 0.5f;
     public BallMovement ballMovement;
     public ScoreManager scoreManager;
-    //public Color Green;
+    public Color Green;
 
     private void Bounce(Collision2D collision)
     {
@@ -35,10 +35,10 @@ public class BallBounce : MonoBehaviour
         {
             Bounce(collision);
             audioSource.PlayOneShot(clip, volume);
-            //GameObject.Find("Top").GetComponent<SpriteRenderer>().color = Green;
-            //GameObject.Find("Bottom").GetComponent<SpriteRenderer>().color = Green;
-            //.Find("Right").GetComponent<SpriteRenderer>().color = Green;
-            //.Find("Left").GetComponent<SpriteRenderer>().color = Green;
+            GameObject.Find("Top").SetActive(false); //GetComponent<SpriteRenderer>().color = Green;
+            GameObject.Find("Bottom").SetActive(false); //GetComponent<SpriteRenderer>().color = Green;
+            GameObject.Find("Right").SetActive(false); //GetComponent<SpriteRenderer>().color = Green;
+            GameObject.Find("Left").SetActive(false); //GetComponent<SpriteRenderer>().color = Green;
         }
         else if(collision.gameObject.name == "Right")
         {
