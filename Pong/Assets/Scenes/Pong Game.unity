@@ -356,7 +356,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -100
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d78381032f52e034c8e21b1fe2474357, type: 3}
   m_Color: {r: 1, g: 0, b: 0.6545358, a: 1}
   m_FlipX: 0
@@ -1266,7 +1266,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 431f19583b7257e4d9e1c34d7607e97d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1342,6 +1342,7 @@ MonoBehaviour:
   volume: 0.5
   ballMovement: {fileID: 1826932920}
   scoreManager: {fileID: 924126206}
+  Green: {r: 0.066497564, g: 1, b: 0, a: 0}
 --- !u!82 &1826932922
 AudioSource:
   m_ObjectHideFlags: 0
