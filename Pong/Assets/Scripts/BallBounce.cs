@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BallBounce : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip clip;
+    public float volume = 0.5f;
     public BallMovement ballMovement;
     public ScoreManager scoreManager;
 
@@ -30,6 +33,7 @@ public class BallBounce : MonoBehaviour
         if(collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
         {
             Bounce(collision);
+            audioSource.PlayOneShot(clip, volume);
         }
         else if(collision.gameObject.name == "Right")
         {
