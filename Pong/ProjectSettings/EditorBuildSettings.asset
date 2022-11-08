@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Pong Game.unity
     guid: 00795a1d4e1d6d84685134a1d687cf7d
   - enabled: 1
-    path: Assets/Scenes/Game Over.unity
+    path: Assets/Scenes/RedWinner.unity
     guid: 37a78b965ccd41c4fa7f5bfb45693cf0
+  - enabled: 1
+    path: Assets/Scenes/GreenWinner.unity
+    guid: 70dc614dd92f77f4391360a282200f76
   m_configObjects: {}

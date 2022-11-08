@@ -26,9 +26,16 @@ public class ScoreManager : MonoBehaviour
     }
     private void CheckScore()
     {
-        if(player1Score == scoreToReach || player2Score == scoreToReach)
+        if (player1Score == scoreToReach || player2Score == scoreToReach)
         {
-            SceneManager.LoadScene("Game Over");
+            if (player1Score > player2Score)
+            {
+                SceneManager.LoadScene("GreenWinner");
+            }
+            else if (player1Score < player2Score)
+            {
+                SceneManager.LoadScene("RedWinner");
+            }
         }
     }
 }
