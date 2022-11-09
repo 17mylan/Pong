@@ -8,7 +8,7 @@ public class Player1 : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 racketDirection;
-
+    public Animator animator;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();        
@@ -19,6 +19,7 @@ public class Player1 : MonoBehaviour
     {
         float directionY = Input.GetAxisRaw("Vertical");
         racketDirection = new Vector2(0, directionY).normalized;
+        animator.SetFloat("Speed", Mathf.Abs(directionY));
     }
     private void FixedUpdate()
     {

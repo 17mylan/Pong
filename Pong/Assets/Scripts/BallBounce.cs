@@ -12,8 +12,6 @@ public class BallBounce : MonoBehaviour
     public BallMovement ballMovement;
     public ScoreManager scoreManager;
     public CameraShake cameraShake;
-    public int randomValue;
-    public Color newColor;
     public int RedBallTouch = 0;
     public int GreenBallTouch = 0;
     public Text redBallTouchText;
@@ -90,39 +88,12 @@ public class BallBounce : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         StartCoroutine(cameraShake.Shake(.15f, .1f));
-        randomValue = Random.Range(0, 5);
-        if (randomValue == 0)
-        {
-            newColor = Color.red;
-        }
-        else if (randomValue == 1)
-        {
-            newColor = Color.green;
-        }
-        else if (randomValue == 2)
-        {
-            newColor = Color.cyan;
-        }
-        else if (randomValue == 3)
-        {
-            newColor = Color.white;
-        }
-        else if (randomValue == 4)
-        {
-            newColor = Color.magenta;
-        }
-        GameObject.Find("Top").GetComponent<SpriteRenderer>().color = newColor;
-        GameObject.Find("Bottom").GetComponent<SpriteRenderer>().color = newColor;
-        GameObject.Find("Right").GetComponent<SpriteRenderer>().color = newColor;
-        GameObject.Find("Left").GetComponent<SpriteRenderer>().color = newColor;
-        GameObject.Find("Middle Line").GetComponent<SpriteRenderer>().color = newColor;
         if (collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
         {
             audioSource.PlayOneShot(clip);
             Bounce(collision);
             if (collision.gameObject.name == "Player 1")
             {
-                GameObject.Find("Ball").GetComponent<SpriteRenderer>().color = Color.green;
                 if (lastTouch == true)
                 {
                     GreenBallTouch++;
@@ -152,7 +123,6 @@ public class BallBounce : MonoBehaviour
             {
                 if (lastTouch == false)
                 {
-                    GameObject.Find("Ball").GetComponent<SpriteRenderer>().color = Color.red;
                     RedBallTouch++;
                     lastTouch = true;
                     if (RedBallTouch <= 3)
