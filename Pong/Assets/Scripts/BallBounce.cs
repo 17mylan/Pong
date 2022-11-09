@@ -9,6 +9,10 @@ public class BallBounce : MonoBehaviour
     public AudioClip clip;
     public AudioSource audioSource1;
     public AudioClip clip1;
+    public AudioSource audioSource2;
+    public AudioClip clip2;
+    public AudioSource audioSource3;
+    public AudioClip clip3;
     public BallMovement ballMovement;
     public ScoreManager scoreManager;
     public CameraShake cameraShake;
@@ -22,13 +26,26 @@ public class BallBounce : MonoBehaviour
     public Sprite Charg1;
     public Sprite Charg2;
     public Sprite Charg3;
+    public Sprite BlueShoot;
     public GameObject UIplayerRed;
     public GameObject UIplayerGreen;
+    public GameObject ButImage;
+    public GameObject ButTextOrange;
+    public GameObject ButTextBlue;
+    public GameObject Arbitre;
     public bool lastTouch;
+    public int randomNumber;
     public void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         lastTouch = true; // True = Green, False = Red
+        StartCoroutine("InizializeArbitre");
+    }
+    IEnumerator InizializeArbitre()
+    {
+        Arbitre.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        Arbitre.SetActive(false);
     }
     private void Bounce(Collision2D collision)
     {
@@ -88,6 +105,10 @@ public class BallBounce : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         StartCoroutine(cameraShake.Shake(.15f, .1f));
+        if (collision.gameObject.name == "Top" || collision.gameObject.name == "Bottom" || collision.gameObject.name == "RightBorder" || collision.gameObject.name == "RightBorder2" || collision.gameObject.name == "LeftBorder" || collision.gameObject.name == "LeftBorder2")
+        {
+            audioSource.PlayOneShot(clip3);
+        }
         if (collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
         {
             audioSource.PlayOneShot(clip);
@@ -149,10 +170,11 @@ public class BallBounce : MonoBehaviour
         }
         else if(collision.gameObject.name == "Right")
         {
-            audioSource1.PlayOneShot(clip1);
+            audioSource1.PlayOneShot(clip2);
             scoreManager.Player1Goal();
             ballMovement.player1Start = false;
             StartCoroutine(ballMovement.Launch());
+            StartCoroutine("GoalBlue");
         }
         else if (collision.gameObject.name == "Left")
         {
@@ -160,6 +182,23 @@ public class BallBounce : MonoBehaviour
             scoreManager.Player2Goal();
             ballMovement.player1Start = true;
             StartCoroutine(ballMovement.Launch());
+            StartCoroutine("GoalOrange");
         }
+    }
+    IEnumerator GoalBlue()
+    {
+        ButImage.SetActive(true);
+        ButTextBlue.SetActive(true);
+        yield return new WaitForSeconds(3);
+        ButImage.SetActive(false);
+        ButTextBlue.SetActive(false);
+    }
+    IEnumerator GoalOrange()
+    {
+        ButImage.SetActive(true);
+        ButTextOrange.SetActive(true);
+        yield return new WaitForSeconds(3);
+        ButImage.SetActive(false);
+        ButTextOrange.SetActive(false);
     }
 }

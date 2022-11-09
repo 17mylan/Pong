@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 749013d8915e8534f811ed1087d34978
+guid: 848f16663933849428cd04842b822e22
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,127 +105,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: football_pong2_texture_0_0
+      name: assettsss_0
       rect:
         serializedVersion: 2
-        x: 50
-        y: 66
-        width: 33
-        height: 56
+        x: 18
+        y: 117
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 817182c3ef961a54b93e356c955d623a
-      internalID: 2145776456
+      spriteID: edb715ce63cd24f48baec6846a5fffa6
+      internalID: 1029529550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: football_pong2_texture_0_1
+      name: assettsss_1
       rect:
         serializedVersion: 2
-        x: 90
-        y: 64
-        width: 48
-        height: 58
+        x: 121
+        y: 117
+        width: 101
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0640e1d86ff2664f8f5961520e27c14
-      internalID: -122196392
+      spriteID: 0faeac055dc2abd43a663d41d87aa0dd
+      internalID: -321124585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: football_pong2_texture_0_2
+      name: assettsss_2
       rect:
         serializedVersion: 2
-        x: 143
-        y: 68
-        width: 45
-        height: 56
+        x: 226
+        y: 117
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eead9c6863a0fb4409f6676038ccf950
-      internalID: 773010419
+      spriteID: 919a8f6e51b6e4745ba4210ad933d4cb
+      internalID: 1668629244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: football_pong2_texture_0_3
+      name: assettsss_3
       rect:
         serializedVersion: 2
-        x: 2
-        y: 2
-        width: 74
-        height: 38
+        x: 332
+        y: 117
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 3, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a76ab993c7e4746468bb8f251edeccce
-      internalID: 1419643473
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: football_pong2_texture_0_4
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 5
-        width: 94
-        height: 35
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66a009a901a614d49b52d4674329c26e
-      internalID: 45630375
+      spriteID: 59643a6c74cee1a44b6f533decdfe54c
+      internalID: 1108249388
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: football_pong2_texture_0_5
+      name: assettsss_4
       rect:
         serializedVersion: 2
-        x: 180
-        y: 5
-        width: 71
-        height: 35
+        x: 437
+        y: 117
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b360f972dfece49429303f1c2061da0b
-      internalID: 1109094762
+      spriteID: c8a508c2e2a461240b9e456d059a0d9a
+      internalID: 634517922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assettsss_5
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 117
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f48aba95fd32b246aab0e4ce9041759
+      internalID: -1450730766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assettsss_6
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 117
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d16c7d7c89477f408398773a9d5b7db
+      internalID: 531197070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assettsss_7
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 117
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee263f307b36d5645a13a81a1520f33b
+      internalID: -1978196423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assettsss_8
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 8
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ed0e37a9857d2844ae733289ce456cf
+      internalID: -442619105
       vertices: []
       indices: 
       edges: []
@@ -241,12 +304,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      football_pong2_texture_0_1: -122196392
-      football_pong2_texture_0_3: 1419643473
-      football_pong2_texture_0_0: 2145776456
-      football_pong2_texture_0_2: 773010419
-      football_pong2_texture_0_5: 1109094762
-      football_pong2_texture_0_4: 45630375
+      assettsss_0: 1029529550
+      assettsss_8: -442619105
+      assettsss_7: -1978196423
+      assettsss_5: -1450730766
+      assettsss_2: 1668629244
+      assettsss_6: 531197070
+      assettsss_1: -321124585
+      assettsss_3: 1108249388
+      assettsss_4: 634517922
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

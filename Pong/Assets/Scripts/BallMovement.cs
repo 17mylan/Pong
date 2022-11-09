@@ -27,7 +27,7 @@ public class BallMovement : MonoBehaviour
     {
         RestartBall();
         hitCounter = 0;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3.2f);
         if(player1Start == true)
         {
             MoveBall(new Vector2(-1, 0));
