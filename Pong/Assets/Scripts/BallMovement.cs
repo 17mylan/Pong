@@ -11,6 +11,7 @@ public class BallMovement : MonoBehaviour
     public bool player1Start = true;
     private int hitCounter = 0;
     private Rigidbody2D rb;
+    public TrailRenderer trailRenderer;
 
     private void Start()
     {

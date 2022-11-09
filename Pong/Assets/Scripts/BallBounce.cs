@@ -13,6 +13,8 @@ public class BallBounce : MonoBehaviour
     public AudioClip clip2;
     public AudioSource audioSource3;
     public AudioClip clip3;
+    public AudioSource audioSource4;
+    public AudioClip clip4;
     public BallMovement ballMovement;
     public ScoreManager scoreManager;
     public CameraShake cameraShake;
@@ -104,13 +106,14 @@ public class BallBounce : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        StartCoroutine(cameraShake.Shake(.15f, .1f));
         if (collision.gameObject.name == "Top" || collision.gameObject.name == "Bottom" || collision.gameObject.name == "RightBorder" || collision.gameObject.name == "RightBorder2" || collision.gameObject.name == "LeftBorder" || collision.gameObject.name == "LeftBorder2")
         {
+            StartCoroutine(cameraShake.Shake(.15f, .1f));
             audioSource.PlayOneShot(clip3);
         }
         if (collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
         {
+            StartCoroutine(cameraShake.Shake(.15f, .3f));
             audioSource.PlayOneShot(clip);
             Bounce(collision);
             if (collision.gameObject.name == "Player 1")
@@ -171,6 +174,7 @@ public class BallBounce : MonoBehaviour
         else if(collision.gameObject.name == "Right")
         {
             audioSource1.PlayOneShot(clip2);
+            audioSource1.PlayOneShot(clip4);
             scoreManager.Player1Goal();
             ballMovement.player1Start = false;
             StartCoroutine(ballMovement.Launch());
@@ -179,6 +183,7 @@ public class BallBounce : MonoBehaviour
         else if (collision.gameObject.name == "Left")
         {
             audioSource1.PlayOneShot(clip1);
+            audioSource1.PlayOneShot(clip4);
             scoreManager.Player2Goal();
             ballMovement.player1Start = true;
             StartCoroutine(ballMovement.Launch());
