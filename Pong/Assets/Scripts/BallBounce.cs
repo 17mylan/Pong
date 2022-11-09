@@ -37,17 +37,94 @@ public class BallBounce : MonoBehaviour
     public GameObject Arbitre;
     public bool lastTouch;
     public int randomNumber;
+
+    public AudioSource C_Start1;
+    public AudioClip CS_clip_1;
+    public AudioSource C_Start2;
+    public AudioClip CS_clip_2;
+
+    public AudioSource Commentary;
+    public AudioClip C_clip_1;
+    public AudioSource Commentary2;
+    public AudioClip C_clip_2;
+    public AudioSource Commentary3;
+    public AudioClip C_clip_3;
+    public AudioSource Commentary4;
+    public AudioClip C_clip_4;
+    public AudioSource Commentary5;
+    public AudioClip C_clip_5;
+    public AudioSource Commentary6;
+    public AudioClip C_clip_6;
+    public AudioSource Commentary7;
+    public AudioClip C_clip_7;
     public void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         lastTouch = true; // True = Green, False = Red
         StartCoroutine("InizializeArbitre");
+        randomNumber = Random.Range(1, 3);
+        if(randomNumber == 1)
+        {
+            C_Start1.PlayOneShot(CS_clip_1);
+        }
+        if(randomNumber == 2)
+        {
+            C_Start2.PlayOneShot(CS_clip_2);
+        }
+        StartCoroutine("RandomSounds");
     }
     IEnumerator InizializeArbitre()
     {
         Arbitre.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         Arbitre.SetActive(false);
+    }
+    IEnumerator RandomSounds()
+    {
+        yield return new WaitForSeconds(13); //    CHANGER POUR METTRE PLUS DE TEMPS ENVIRON 12secondes
+        randomNumber = Random.Range(1, 8);
+        if(GameObject.Find("But") == false)
+        {
+            if (randomNumber == 1)
+            {
+                Commentary.PlayOneShot(C_clip_1);
+            }
+            else if (randomNumber == 2)
+            {
+                Commentary2.PlayOneShot(C_clip_2);
+            }
+            else if (randomNumber == 3)
+            {
+                Commentary3.PlayOneShot(C_clip_3);
+            }
+            else if (randomNumber == 4)
+            {
+                Commentary4.PlayOneShot(C_clip_4);
+            }
+            else if (randomNumber == 5)
+            {
+                Commentary5.PlayOneShot(C_clip_5);
+            }
+            else if (randomNumber == 6)
+            {
+                Commentary6.PlayOneShot(C_clip_6);
+            }
+            else if (randomNumber == 7)
+            {
+                Commentary7.PlayOneShot(C_clip_7);
+            }
+            else
+            {
+                print("Aucun son joué");
+            }
+            StartCoroutine("RandomSounds");
+        }
+        else
+        {
+            //Restart Coroutine because sound was normally played during goal!
+            StartCoroutine("RandomSounds");
+        }
+        
     }
     private void Bounce(Collision2D collision)
     {
