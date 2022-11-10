@@ -18,17 +18,7 @@ public class BallBounce : MonoBehaviour
     public BallMovement ballMovement;
     public ScoreManager scoreManager;
     public CameraShake cameraShake;
-    public int RedBallTouch = 0;
-    public int GreenBallTouch = 0;
-    public Text redBallTouchText;
-    public Text greenBallTouchText;
     public SpriteRenderer spriteRenderer;
-    public Sprite GreenChargEmpty;
-    public Sprite RedChargEmpty;
-    public Sprite Charg1;
-    public Sprite Charg2;
-    public Sprite Charg3;
-    public Sprite BlueShoot;
     public GameObject UIplayerRed;
     public GameObject UIplayerGreen;
     public GameObject ButImage;
@@ -57,21 +47,25 @@ public class BallBounce : MonoBehaviour
     public AudioClip C_clip_6;
     public AudioSource Commentary7;
     public AudioClip C_clip_7;
+
+    public Sprite RandomGadgetIce;
+    public Sprite RandomGadgetSpeed;
     public void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         lastTouch = true; // True = Green, False = Red
         StartCoroutine("InizializeArbitre");
         randomNumber = Random.Range(1, 3);
-        if(randomNumber == 1)
+        if (randomNumber == 1)
         {
             C_Start1.PlayOneShot(CS_clip_1);
         }
-        if(randomNumber == 2)
+        if (randomNumber == 2)
         {
             C_Start2.PlayOneShot(CS_clip_2);
         }
         StartCoroutine("RandomSounds");
+        GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite = RandomGadgetIce;
     }
     IEnumerator InizializeArbitre()
     {
@@ -144,49 +138,78 @@ public class BallBounce : MonoBehaviour
         ballMovement.IncreaseHitCounter();
         ballMovement.MoveBall(new Vector2(positionX, positionY));
     }
-    IEnumerator Green()
+    Player1 player1;
+    Player2 player2;
+    public float racketSpeed = 10;
+    IEnumerator BlueIce()
     {
         UIplayerGreen.SetActive(true);
+        player2 = FindObjectOfType<Player2>();
+        player2.racketSpeed = 1f;
         yield return new WaitForSeconds(1.5f);
         UIplayerGreen.SetActive(false);
+        player2.racketSpeed = 10f;
     }
-    IEnumerator Red()
+    IEnumerator OrangeIce()
     {
+        player1 = FindObjectOfType<Player1>();
+        player1.racketSpeed = 1;
         UIplayerRed.SetActive(true);
         yield return new WaitForSeconds(1.5f);
         UIplayerRed.SetActive(false);
+        player1.racketSpeed = 10;
     }
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if(GreenBallTouch >= 3)
+            if (GameObject.Find("But") == false)
             {
-                GreenBallTouch = 0;
-                greenBallTouchText.text = GreenBallTouch.ToString();
-                GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = GreenChargEmpty;
-                GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.gray;
-                StartCoroutine("Green");
+                if (GameObject.Find("RandomGadgetIce_Blue") == true)
+                {
+                    GameObject.Find("RandomGadgetIce_Blue").SetActive(false);
+                    StartCoroutine("BlueIce");
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            if (RedBallTouch >= 3)
+            if (GameObject.Find("But") == false)
             {
-                RedBallTouch = 0;
-                redBallTouchText.text = RedBallTouch.ToString();
-                GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = RedChargEmpty;
-                GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.gray;
-                StartCoroutine("Red");
+                if (GameObject.Find("RandomGadgetIce_Orange") == true)
+                {
+                    GameObject.Find("RandomGadgetIce_Orange").SetActive(false);
+                    StartCoroutine("OrangeIce");
+                }
             }
         }
     }
+    public GameObject RandomGadgetIce_Blue;
+    public GameObject RandomGadgetIce_Orange;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Top" || collision.gameObject.name == "Bottom" || collision.gameObject.name == "RightBorder" || collision.gameObject.name == "RightBorder2" || collision.gameObject.name == "LeftBorder" || collision.gameObject.name == "LeftBorder2")
         {
             StartCoroutine(cameraShake.Shake(.15f, .1f));
             audioSource.PlayOneShot(clip3);
+        }
+        if (collision.gameObject.name == "RandomGadget")
+        {
+            if(lastTouch == true)
+            {
+                if(GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite == RandomGadgetIce)
+                {
+                    RandomGadgetIce_Orange.SetActive(true);
+                }
+            }
+            if (lastTouch == false)
+            {
+                if (GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite == RandomGadgetIce)
+                {
+                    RandomGadgetIce_Blue.SetActive(true);
+                }
+            }
         }
         if (collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
         {
@@ -197,54 +220,14 @@ public class BallBounce : MonoBehaviour
             {
                 if (lastTouch == true)
                 {
-                    GreenBallTouch++;
                     lastTouch = false;
-                    if (GreenBallTouch <= 3)
-                    {
-                        greenBallTouchText.text = GreenBallTouch.ToString();
-                    }
-                    if (GreenBallTouch == 1)
-                    {
-                        GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg1;
-                        GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.green;
-                    }
-                    else if (GreenBallTouch == 2)
-                    {
-                        GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg2;
-                        GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.green;
-                    }
-                    else if (GreenBallTouch == 3)
-                    {
-                        GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg3;
-                        GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.green;
-                    }
                 }
             }
-            else if(collision.gameObject.name == "Player 2")
+            else if (collision.gameObject.name == "Player 2")
             {
                 if (lastTouch == false)
                 {
-                    RedBallTouch++;
                     lastTouch = true;
-                    if (RedBallTouch <= 3)
-                    {
-                        redBallTouchText.text = RedBallTouch.ToString();
-                    }
-                    if (RedBallTouch == 1)
-                    {
-                        GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg1;
-                        GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.red;
-                    }
-                    else if (RedBallTouch == 2)
-                    {
-                        GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg2;
-                        GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.red;
-                    }
-                    else if (RedBallTouch == 3)
-                    {
-                        GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg3;
-                        GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.red;
-                    }
                 }
             }
         }
@@ -256,6 +239,7 @@ public class BallBounce : MonoBehaviour
             ballMovement.player1Start = false;
             StartCoroutine(ballMovement.Launch());
             StartCoroutine("GoalBlue");
+            lastTouch = true;
         }
         else if (collision.gameObject.name == "Left")
         {
@@ -265,6 +249,7 @@ public class BallBounce : MonoBehaviour
             ballMovement.player1Start = true;
             StartCoroutine(ballMovement.Launch());
             StartCoroutine("GoalOrange");
+            lastTouch = false;
         }
     }
     IEnumerator GoalBlue()
