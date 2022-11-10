@@ -6,7 +6,6 @@ public class Randomize : MonoBehaviour
 {
     public BoxCollider2D gridArea;
     public Sprite RandomGadgetIce;
-    //public Sprite RandomGadgetSpeed;
     public float randomValue;
     public void RandomizePosition()
     {
