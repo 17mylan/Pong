@@ -116,7 +116,10 @@ public class BallBounce : MonoBehaviour
     {
         if (collision.gameObject.name == "Top" || collision.gameObject.name == "Bottom" || collision.gameObject.name == "RightBorder" || collision.gameObject.name == "RightBorder2" || collision.gameObject.name == "LeftBorder" || collision.gameObject.name == "LeftBorder2")
         {
-            StartCoroutine(cameraShake.Shake(.15f, .1f));
+            if (PlayerPrefs.GetInt("ShakeStatus") == 0)
+            {
+                StartCoroutine(cameraShake.Shake(.15f, .1f));
+            }
             audioSource.PlayOneShot(clip3);
         }
         if (collision.gameObject.name == "RandomGadget")
@@ -138,7 +141,10 @@ public class BallBounce : MonoBehaviour
         }
         if (collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
         {
-            StartCoroutine(cameraShake.Shake(.15f, .3f));
+            if (PlayerPrefs.GetInt("ShakeStatus") == 0)
+            {
+                StartCoroutine(cameraShake.Shake(.15f, .3f));
+            }
             audioSource.PlayOneShot(clip);
             Bounce(collision);
             if (collision.gameObject.name == "Player 1")
