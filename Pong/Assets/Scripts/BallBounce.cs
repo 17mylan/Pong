@@ -26,6 +26,7 @@ public class BallBounce : MonoBehaviour
     public GameObject ButTextBlue;
     public GameObject Arbitre;
     public bool lastTouch;
+    public bool firstTouch = false;
     public int randomNumber;
     public AudioSource C_Start1;
     public AudioClip CS_clip_1;
@@ -124,18 +125,25 @@ public class BallBounce : MonoBehaviour
         }
         if (collision.gameObject.name == "RandomGadget")
         {
-            if(lastTouch == true)
+            if(firstTouch == false)
             {
-                if(GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite == RandomGadgetIce)
-                {
-                    RandomGadgetIce_Orange.SetActive(true);
-                }
+                firstTouch = true;
             }
-            if (lastTouch == false)
+            else if(firstTouch == true)
             {
-                if (GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite == RandomGadgetIce)
+                if (lastTouch == true)
                 {
-                    RandomGadgetIce_Blue.SetActive(true);
+                    if (GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite == RandomGadgetIce)
+                    {
+                        RandomGadgetIce_Orange.SetActive(true);
+                    }
+                }
+                if (lastTouch == false)
+                {
+                    if (GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite == RandomGadgetIce)
+                    {
+                        RandomGadgetIce_Blue.SetActive(true);
+                    }
                 }
             }
         }
