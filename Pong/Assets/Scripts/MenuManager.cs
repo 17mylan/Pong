@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour
     public GameObject MainMenu;
     public GameObject MenuOptions;
     public GameObject MenuCredits;
+    public GameObject MenuControls;
     public void ChangeScene(string _sceneName)
     {
         SceneManager.LoadScene(_sceneName);
@@ -42,6 +43,16 @@ public class MenuManager : MonoBehaviour
         {
             MainMenu.SetActive(true);
             MenuOptions.SetActive(false);
+        }
+        if (_String == "Controls Button")
+        {
+            MenuControls.SetActive(true);
+            MenuOptions.SetActive(false);
+        }
+        if (_String == "Return From Controls Button")
+        {
+            MenuOptions.SetActive(true);
+            MenuControls.SetActive(false);
         }
     }
 }

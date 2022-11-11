@@ -8,10 +8,16 @@ public class ScoreManager : MonoBehaviour
     public int scoreToReach;
     private int player1Score = 0;
     private int player2Score = 0;
+    public GameObject MatchPointBlue;
+    public GameObject MatchPointOrange;
 
     public Text player1ScoreText;
     public Text player2ScoreText;
-
+    public void Start()
+    {
+        MatchPointOrange.SetActive(false);
+        MatchPointBlue.SetActive(false);
+    }
     public void Player1Goal()
     {
         player1Score++;
@@ -37,5 +43,26 @@ public class ScoreManager : MonoBehaviour
                 SceneManager.LoadScene("RedWinner");
             }
         }
+        if (player1Score == scoreToReach - 1)
+        {
+            StartCoroutine("Blue");
+
+        }
+        if (player2Score == scoreToReach - 1)
+        {
+            StartCoroutine("Orange");
+        }
+    }
+    IEnumerator Blue()
+    {
+        MatchPointBlue.SetActive(true);
+        yield return new WaitForSeconds(3);
+        MatchPointBlue.SetActive(false);
+    }
+    IEnumerator Orange()
+    {
+        MatchPointOrange.SetActive(true);
+        yield return new WaitForSeconds(3);
+        MatchPointOrange.SetActive(false);
     }
 }
