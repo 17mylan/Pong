@@ -153,6 +153,10 @@ public class BallBounce : MonoBehaviour
             {
                 StartCoroutine(cameraShake.Shake(.15f, .3f));
             }
+            if (firstTouch == false)
+            {
+                firstTouch = true;
+            }
             audioSource.PlayOneShot(clip);
             Bounce(collision);
             if (collision.gameObject.name == "Player 1")
