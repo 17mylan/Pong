@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallMovement : MonoBehaviour
 {
@@ -29,13 +30,22 @@ public class BallMovement : MonoBehaviour
         RestartBall();
         hitCounter = 0;
         yield return new WaitForSeconds(3.2f);
-        if(player1Start == true)
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if (sceneName == "Pong Game")
         {
-            MoveBall(new Vector2(-1, 0));
+            if (player1Start == true)
+            {
+                MoveBall(new Vector2(-1, 0));
+            }
+            else
+            {
+                MoveBall(new Vector2(1, 0));
+            }
         }
         else
         {
-            MoveBall(new Vector2(1, 0));
+            MoveBall(new Vector2(-1, 0));
         }
     }
     public void MoveBall(Vector2 direction)

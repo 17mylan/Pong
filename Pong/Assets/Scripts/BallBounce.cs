@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BallBounce : MonoBehaviour
 {
@@ -52,6 +53,8 @@ public class BallBounce : MonoBehaviour
     public GameObject RandomGadgetIce_Orange;
     Player1 player1;
     Player2 player2;
+    Player1Alone player1Alone;
+    Player2Auto player2Auto;
     public float racketSpeed = 10;
     public void Start()
     {
@@ -213,12 +216,26 @@ public class BallBounce : MonoBehaviour
     }
     IEnumerator BlueIce()
     {
-        UIplayerGreen.SetActive(true);
-        player2 = FindObjectOfType<Player2>();
-        player2.racketSpeed = 1f;
-        yield return new WaitForSeconds(1.5f);
-        UIplayerGreen.SetActive(false);
-        player2.racketSpeed = 10f;
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if (sceneName == "Pong Game")
+        {
+            UIplayerGreen.SetActive(true);
+            player2 = FindObjectOfType<Player2>();
+            player2.racketSpeed = 1f;
+            yield return new WaitForSeconds(1.5f);
+            UIplayerGreen.SetActive(false);
+            player2.racketSpeed = 10f;
+        }
+        else
+        {
+            UIplayerGreen.SetActive(true);
+            player2Auto = FindObjectOfType<Player2Auto>();
+            player2Auto.racketSpeed = 1f;
+            yield return new WaitForSeconds(1.5f);
+            UIplayerGreen.SetActive(false);
+            player2Auto.racketSpeed = 10f;
+        }
     }
     IEnumerator OrangeIce()
     {

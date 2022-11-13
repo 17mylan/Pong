@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     public GameObject MenuOptions;
     public GameObject MenuCredits;
     public GameObject MenuControls;
+    public GameObject MenuChoice;
     public void ChangeScene(string _sceneName)
     {
         SceneManager.LoadScene(_sceneName);
@@ -20,9 +21,23 @@ public class MenuManager : MonoBehaviour
     }
     public void ButtonClicked(string _String)
     {
-        if (_String == "Play Button")
+        if (_String == "Menu Choice")
+        {
+            MainMenu.SetActive(false);
+            MenuChoice.SetActive(true);
+        }
+        if (_String == "Play Button 2 Players")
         {
             SceneManager.LoadScene("Pong Game");
+        }
+        if (_String == "Play Button Alone")
+        {
+            SceneManager.LoadScene("Pong Game Alone");
+        }
+        if (_String == "Return From Menu Choice")
+        {
+            MenuChoice.SetActive(false);
+            MainMenu.SetActive(true);
         }
         if (_String == "Credits Button")
         {
