@@ -10,7 +10,7 @@ public class Player2Auto : MonoBehaviour
     private Vector2 racketDirection;
     public Animator animator;
     public string collided;
-    public int randomValue;
+    public float randomValue;
     public float directionY;
     Player1Alone player1Alone;
     public GameObject UIplayerRed;
@@ -39,8 +39,8 @@ public class Player2Auto : MonoBehaviour
         if (collided == "Top")
         {
             transform.Translate(0, -8f * directionY, 0);
-            randomValue = Random.Range(0, 100);
-            if (randomValue == 1)
+            randomValue = Random.Range(0f, 100f);
+            if (randomValue < 0.3f)
             {
                 collided = "Bottom";
             }
@@ -48,8 +48,8 @@ public class Player2Auto : MonoBehaviour
         if (collided == "Bottom")
         {
             transform.Translate(0, 8f * directionY, 0);
-            randomValue = Random.Range(0, 100);
-            if (randomValue == 1)
+            randomValue = Random.Range(0f, 100f);
+            if (randomValue < 0.3f)
             {
                 collided = "Top";
             }
