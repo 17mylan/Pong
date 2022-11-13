@@ -26,29 +26,40 @@ public class Player2Auto : MonoBehaviour
     void Update()
     {
         float directionY = Time.deltaTime;
-        if(GameObject.Find("RandomGadgetIce_Orange") == true)
-        {
-            GameObject.Find("RandomGadgetIce_Orange").SetActive(false);
-            StartCoroutine("OrangeIceAuto");
-        }
         animator.SetFloat("Speed", 1);
-        if (collided == "Top")
+        if (GameObject.Find("GreenPlayerUsePower") == true)
+        {
+            if (collided == "Top")
+            {
+                transform.Translate(0, -0.001f, 0);
+            }
+            if (collided == "Bottom")
+            {
+                transform.Translate(0, 0.001f, 0);
+            }
+        }
+        else if (collided == "Top")
         {
             transform.Translate(0, -8f * directionY, 0);
             randomValue = Random.Range(0f, 100f);
-            if (randomValue < 0.3f)
+            if (randomValue < 0.25f)
             {
                 collided = "Bottom";
             }
         }
-        if (collided == "Bottom")
+        else if (collided == "Bottom")
         {
             transform.Translate(0, 8f * directionY, 0);
             randomValue = Random.Range(0f, 100f);
-            if (randomValue < 0.3f)
+            if (randomValue < 0.25f)
             {
                 collided = "Top";
             }
+        }
+        if (GameObject.Find("RandomGadgetIce_Orange") == true)
+        {
+            GameObject.Find("RandomGadgetIce_Orange").SetActive(false);
+            StartCoroutine("OrangeIceAuto");
         }
     }
     public void OnCollisionEnter2D(Collision2D collision)
