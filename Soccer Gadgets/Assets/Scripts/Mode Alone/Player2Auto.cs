@@ -26,10 +26,6 @@ public class Player2Auto : MonoBehaviour
     void Update()
     {
         float directionY = Time.deltaTime;
-        //if (GameObject.Find("RandomGadgetIce_Blue") == true)
-        //{
-        //directionY = Time.deltaTime - 1;
-        //}
         if(GameObject.Find("RandomGadgetIce_Orange") == true)
         {
             GameObject.Find("RandomGadgetIce_Orange").SetActive(false);
