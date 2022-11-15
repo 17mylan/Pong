@@ -42,7 +42,7 @@ public class Player2Auto : MonoBehaviour
         {
             transform.Translate(0, -8f * directionY, 0);
             randomValue = Random.Range(0f, 100f);
-            if (randomValue < 0.25f)
+            if (randomValue < 0.22f)
             {
                 collided = "Bottom";
             }
@@ -51,7 +51,7 @@ public class Player2Auto : MonoBehaviour
         {
             transform.Translate(0, 8f * directionY, 0);
             randomValue = Random.Range(0f, 100f);
-            if (randomValue < 0.25f)
+            if (randomValue < 0.22f)
             {
                 collided = "Top";
             }

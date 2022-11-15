@@ -56,6 +56,8 @@ public class BallBounce : MonoBehaviour
     Player1Alone player1Alone;
     Player2Auto player2Auto;
     public float racketSpeed = 10;
+    public AudioSource Ice;
+    public AudioClip IceSound;
     public void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -100,6 +102,7 @@ public class BallBounce : MonoBehaviour
                 if (GameObject.Find("RandomGadgetIce_Blue") == true)
                 {
                     GameObject.Find("RandomGadgetIce_Blue").SetActive(false);
+                    Ice.PlayOneShot(IceSound);
                     StartCoroutine("BlueIce");
                 }
             }
@@ -111,6 +114,7 @@ public class BallBounce : MonoBehaviour
                 if (GameObject.Find("RandomGadgetIce_Orange") == true)
                 {
                     GameObject.Find("RandomGadgetIce_Orange").SetActive(false);
+                    Ice.PlayOneShot(IceSound);
                     StartCoroutine("OrangeIce");
                 }
             }
