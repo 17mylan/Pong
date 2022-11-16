@@ -42,7 +42,7 @@ public class Player2Auto : MonoBehaviour
         {
             transform.Translate(0, -8f * directionY, 0);
             randomValue = Random.Range(0f, 100f);
-            if (randomValue < 0.22f)
+            if (randomValue < 0.25f)
             {
                 collided = "Bottom";
             }
@@ -51,7 +51,7 @@ public class Player2Auto : MonoBehaviour
         {
             transform.Translate(0, 8f * directionY, 0);
             randomValue = Random.Range(0f, 100f);
-            if (randomValue < 0.22f)
+            if (randomValue < 0.25f)
             {
                 collided = "Top";
             }
@@ -60,6 +60,7 @@ public class Player2Auto : MonoBehaviour
         {
             GameObject.Find("RandomGadgetIce_Orange").SetActive(false);
             StartCoroutine("OrangeIceAuto");
+            GameObject.Find("Player 1").GetComponent<SpriteRenderer>().color = Color.cyan;
         }
     }
     public void OnCollisionEnter2D(Collision2D collision)
@@ -81,5 +82,6 @@ public class Player2Auto : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         UIplayerRed.SetActive(false);
         player1Alone.racketSpeed = 10;
+        GameObject.Find("Player 1").GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

@@ -5,20 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class BallMovement : MonoBehaviour
 {
+    // __________________________________________
+    // |                                          |
+    // |                VARIABLES                 |
+    // |__________________________________________|
     public float startSpeed;
     public float extraSpeed;
     public float maxExtraSpeed;
-
     public bool player1Start = true;
     private int hitCounter = 0;
     private Rigidbody2D rb;
     public TrailRenderer trailRenderer;
-
+    // __________________________________________
+    // |                                          |
+    // |              MONOBEHAVIOR                |
+    // |__________________________________________|
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(Launch());
     }
+    // __________________________________________
+    // |                                          |
+    // |            PUBLIC FONCTION               |
+    // |__________________________________________|
     private void RestartBall()
     {
         rb.velocity = new Vector2(0, 0);

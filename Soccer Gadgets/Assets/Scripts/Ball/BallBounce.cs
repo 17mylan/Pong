@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class BallBounce : MonoBehaviour
 {
+    // __________________________________________
+    // |                                          |
+    // |                VARIABLES                 |
+    // |__________________________________________|
+
     public AudioSource audioSource;
     public AudioClip clip;
     public AudioSource audioSource1;
@@ -58,6 +63,12 @@ public class BallBounce : MonoBehaviour
     public float racketSpeed = 10;
     public AudioSource Ice;
     public AudioClip IceSound;
+
+    // __________________________________________
+    // |                                          |
+    // |              MONOBEHAVIOR                |
+    // |__________________________________________|
+
     public void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -75,6 +86,40 @@ public class BallBounce : MonoBehaviour
         StartCoroutine("RandomSounds");
         GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite = RandomGadgetIce;
     }
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (GameObject.Find("But") == false)
+            {
+                if (GameObject.Find("RandomGadgetIce_Blue") == true)
+                {
+                    GameObject.Find("RandomGadgetIce_Blue").SetActive(false);
+                    Ice.PlayOneShot(IceSound);
+                    StartCoroutine("BlueIce");
+                    GameObject.Find("Player 2").GetComponent<SpriteRenderer>().color = Color.cyan;
+                }
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            if (GameObject.Find("But") == false)
+            {
+                if (GameObject.Find("RandomGadgetIce_Orange") == true)
+                {
+                    GameObject.Find("RandomGadgetIce_Orange").SetActive(false);
+                    Ice.PlayOneShot(IceSound);
+                    StartCoroutine("OrangeIce");
+                    GameObject.Find("Player 1").GetComponent<SpriteRenderer>().color = Color.cyan;
+                }
+            }
+        }
+    }
+    // __________________________________________
+    // |                                          |
+    // |            PUBLIC FONCTION               |
+    // |__________________________________________|
+
     private void Bounce(Collision2D collision)
     {
         Vector3 ballPosition = transform.position;
@@ -92,33 +137,6 @@ public class BallBounce : MonoBehaviour
         float positionY = (ballPosition.y - racketPosition.y) / racketHeight;
         ballMovement.IncreaseHitCounter();
         ballMovement.MoveBall(new Vector2(positionX, positionY));
-    }
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (GameObject.Find("But") == false)
-            {
-                if (GameObject.Find("RandomGadgetIce_Blue") == true)
-                {
-                    GameObject.Find("RandomGadgetIce_Blue").SetActive(false);
-                    Ice.PlayOneShot(IceSound);
-                    StartCoroutine("BlueIce");
-                }
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            if (GameObject.Find("But") == false)
-            {
-                if (GameObject.Find("RandomGadgetIce_Orange") == true)
-                {
-                    GameObject.Find("RandomGadgetIce_Orange").SetActive(false);
-                    Ice.PlayOneShot(IceSound);
-                    StartCoroutine("OrangeIce");
-                }
-            }
-        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -230,6 +248,7 @@ public class BallBounce : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             UIplayerGreen.SetActive(false);
             player2.racketSpeed = 10f;
+            GameObject.Find("Player 2").GetComponent<SpriteRenderer>().color = Color.white;
         }
         else
         {
@@ -239,6 +258,7 @@ public class BallBounce : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             UIplayerGreen.SetActive(false);
             player2Auto.racketSpeed = 10f;
+            GameObject.Find("Player 2").GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
     IEnumerator OrangeIce()
@@ -249,6 +269,7 @@ public class BallBounce : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         UIplayerRed.SetActive(false);
         player1.racketSpeed = 10;
+        GameObject.Find("Player 1").GetComponent<SpriteRenderer>().color = Color.white;
     }
     IEnumerator InizializeArbitre()
     {
