@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: e-artsup Students
   productName: Soccer Gadgets
-  defaultCursor: {fileID: 2800000, guid: 3fb7fbc39fa35d54595eeff12c181bec, type: 3}
+  defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.49803925, g: 0.49803925, b: 0.49803925, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -596,7 +596,8 @@ PlayerSettings:
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
-  managedStrippingLevel: {}
+  managedStrippingLevel:
+    Standalone: 0
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
