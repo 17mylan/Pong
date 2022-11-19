@@ -7,27 +7,22 @@ public class Switch : MonoBehaviour
 {
     public Image On;
     public Image Off;
-    public void Start()
-    {
-        if(PlayerPrefs.GetInt("ShakeStatus") == 0)
-        {
+    public void Start(){
+        if(PlayerPrefs.GetInt("ShakeStatus") == 0){
             On.gameObject.SetActive(true);
             Off.gameObject.SetActive(false);
         }
-        if(PlayerPrefs.GetInt("ShakeStatus") == 1)
-        {
+        if(PlayerPrefs.GetInt("ShakeStatus") == 1){
             Off.gameObject.SetActive(true);
             On.gameObject.SetActive(false);
         }
     }
-    public void ON()
-    {
+    public void ON(){
         Off.gameObject.SetActive(true);
         On.gameObject.SetActive(false);
         PlayerPrefs.SetInt("ShakeStatus", 1);
     }
-    public void OFF()
-    {
+    public void OFF(){
         On.gameObject.SetActive(true);
         Off.gameObject.SetActive(false);
         PlayerPrefs.SetInt("ShakeStatus", 0);

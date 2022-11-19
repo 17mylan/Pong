@@ -20,8 +20,7 @@ public class BallMovement : MonoBehaviour
     // |                                          |
     // |              MONOBEHAVIOR                |
     // |__________________________________________|
-    private void Start()
-    {
+    private void Start(){
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(Launch());
     }
@@ -29,45 +28,35 @@ public class BallMovement : MonoBehaviour
     // |                                          |
     // |            PUBLIC FONCTION               |
     // |__________________________________________|
-    private void RestartBall()
-    {
+    private void RestartBall(){
         rb.velocity = new Vector2(0, 0);
         transform.position = new Vector2(0, 0);
     }
-
-    public IEnumerator Launch()
-    {
+    public IEnumerator Launch(){
         RestartBall();
         hitCounter = 0;
         yield return new WaitForSeconds(3.2f);
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
-        if (sceneName == "Pong Game")
-        {
-            if (player1Start == true)
-            {
+        if (sceneName == "Pong Game"){
+            if (player1Start == true){
                 MoveBall(new Vector2(-1, 0));
             }
-            else
-            {
+            else{
                 MoveBall(new Vector2(1, 0));
             }
         }
-        else
-        {
+        else{
             MoveBall(new Vector2(-1, 0));
         }
     }
-    public void MoveBall(Vector2 direction)
-    {
+    public void MoveBall(Vector2 direction){
         direction = direction.normalized;
         float ballSpeed = startSpeed + hitCounter * extraSpeed;
         rb.velocity = direction * ballSpeed;
     }
-    public void IncreaseHitCounter()
-    {
-        if(hitCounter * extraSpeed < maxExtraSpeed)
-        {
+    public void IncreaseHitCounter(){
+        if(hitCounter * extraSpeed < maxExtraSpeed){
             hitCounter++;
         }
     }

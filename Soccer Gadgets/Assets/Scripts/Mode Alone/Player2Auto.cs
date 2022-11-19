@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player2Auto : MonoBehaviour
 {
     public float racketSpeed;
-
     private Rigidbody2D rb;
     private Vector2 racketDirection;
     public Animator animator;
@@ -14,68 +13,53 @@ public class Player2Auto : MonoBehaviour
     public float directionY;
     Player1Alone player1Alone;
     public GameObject UIplayerRed;
-    void Start()
-    {
+    void Start(){
         rb = GetComponent<Rigidbody2D>();
         collided = "Bottom";
     }
-    private void FixedUpdate()
-    {
+    private void FixedUpdate(){
         rb.velocity = racketDirection * racketSpeed;
     }
-    void Update()
-    {
+    void Update(){
         float directionY = Time.deltaTime;
         animator.SetFloat("Speed", 1);
-        if (GameObject.Find("GreenPlayerUsePower") == true)
-        {
-            if (collided == "Top")
-            {
+        if (GameObject.Find("GreenPlayerUsePower") == true){
+            if (collided == "Top"){
                 transform.Translate(0, -0.001f, 0);
             }
-            if (collided == "Bottom")
-            {
+            if (collided == "Bottom"){
                 transform.Translate(0, 0.001f, 0);
             }
         }
-        else if (collided == "Top")
-        {
+        else if (collided == "Top"){
             transform.Translate(0, -8f * directionY, 0);
             randomValue = Random.Range(0f, 100f);
-            if (randomValue < 0.25f)
-            {
+            if (randomValue < 0.25f){
                 collided = "Bottom";
             }
         }
-        else if (collided == "Bottom")
-        {
+        else if (collided == "Bottom"){
             transform.Translate(0, 8f * directionY, 0);
             randomValue = Random.Range(0f, 100f);
-            if (randomValue < 0.25f)
-            {
+            if (randomValue < 0.25f){
                 collided = "Top";
             }
         }
-        if (GameObject.Find("RandomGadgetIce_Orange") == true)
-        {
+        if (GameObject.Find("RandomGadgetIce_Orange") == true){
             GameObject.Find("RandomGadgetIce_Orange").SetActive(false);
             StartCoroutine("OrangeIceAuto");
             GameObject.Find("Player 1").GetComponent<SpriteRenderer>().color = Color.cyan;
         }
     }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Top")
-        {
+    public void OnCollisionEnter2D(Collision2D collision){
+        if (collision.gameObject.name == "Top"){
             collided = "Top";
         }
-        if (collision.gameObject.name == "Bottom")
-        {
+        if (collision.gameObject.name == "Bottom"){
             collided = "Bottom";
         }
     }
-    IEnumerator OrangeIceAuto()
-    {
+    IEnumerator OrangeIceAuto(){
         player1Alone = FindObjectOfType<Player1Alone>();
         player1Alone.racketSpeed = 1;
         UIplayerRed.SetActive(true);

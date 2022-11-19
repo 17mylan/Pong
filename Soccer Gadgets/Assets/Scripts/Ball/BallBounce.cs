@@ -69,31 +69,24 @@ public class BallBounce : MonoBehaviour
     // |              MONOBEHAVIOR                |
     // |__________________________________________|
 
-    public void Start()
-    {
+    public void Start(){
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         lastTouch = true; // True = Green, False = Red
         StartCoroutine("InizializeArbitre");
         randomNumber = Random.Range(1, 3);
-        if (randomNumber == 1)
-        {
+        if (randomNumber == 1){
             C_Start1.PlayOneShot(CS_clip_1);
         }
-        if (randomNumber == 2)
-        {
+        if (randomNumber == 2){
             C_Start2.PlayOneShot(CS_clip_2);
         }
         StartCoroutine("RandomSounds");
         GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite = RandomGadgetIce;
     }
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (GameObject.Find("But") == false)
-            {
-                if (GameObject.Find("RandomGadgetIce_Blue") == true)
-                {
+    public void Update(){
+        if (Input.GetKeyDown(KeyCode.R)){
+            if (GameObject.Find("But") == false){
+                if (GameObject.Find("RandomGadgetIce_Blue") == true){
                     GameObject.Find("RandomGadgetIce_Blue").SetActive(false);
                     Ice.PlayOneShot(IceSound);
                     StartCoroutine("BlueIce");
@@ -101,12 +94,9 @@ public class BallBounce : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            if (GameObject.Find("But") == false)
-            {
-                if (GameObject.Find("RandomGadgetIce_Orange") == true)
-                {
+        if (Input.GetKeyDown(KeyCode.M)){
+            if (GameObject.Find("But") == false){
+                if (GameObject.Find("RandomGadgetIce_Orange") == true){
                     GameObject.Find("RandomGadgetIce_Orange").SetActive(false);
                     Ice.PlayOneShot(IceSound);
                     StartCoroutine("OrangeIce");
@@ -120,87 +110,66 @@ public class BallBounce : MonoBehaviour
     // |            PUBLIC FONCTION               |
     // |__________________________________________|
 
-    private void Bounce(Collision2D collision)
-    {
+    private void Bounce(Collision2D collision){
         Vector3 ballPosition = transform.position;
         Vector3 racketPosition = collision.transform.position;
         float racketHeight = collision.collider.bounds.size.y;
         float positionX;
-        if(collision.gameObject.name == "Player 1")
-        {
+        if(collision.gameObject.name == "Player 1"){
             positionX = 1;
         }
-        else
-        {
+        else{
             positionX = -1;
         }
         float positionY = (ballPosition.y - racketPosition.y) / racketHeight;
         ballMovement.IncreaseHitCounter();
         ballMovement.MoveBall(new Vector2(positionX, positionY));
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Top" || collision.gameObject.name == "Bottom" || collision.gameObject.name == "RightBorder" || collision.gameObject.name == "RightBorder2" || collision.gameObject.name == "LeftBorder" || collision.gameObject.name == "LeftBorder2")
-        {
-            if (PlayerPrefs.GetInt("ShakeStatus") == 0)
-            {
+    private void OnCollisionEnter2D(Collision2D collision){
+        if (collision.gameObject.name == "Top" || collision.gameObject.name == "Bottom" || collision.gameObject.name == "RightBorder" || collision.gameObject.name == "RightBorder2" || collision.gameObject.name == "LeftBorder" || collision.gameObject.name == "LeftBorder2"){
+            if (PlayerPrefs.GetInt("ShakeStatus") == 0){
                 StartCoroutine(cameraShake.Shake(.15f, .1f));
             }
             audioSource.PlayOneShot(clip3);
         }
-        if (collision.gameObject.name == "RandomGadget")
-        {
-            if(firstTouch == false)
-            {
+        if (collision.gameObject.name == "RandomGadget"){
+            if(firstTouch == false){
                 firstTouch = true;
             }
-            else if(firstTouch == true)
-            {
-                if (lastTouch == true)
-                {
-                    if (GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite == RandomGadgetIce)
-                    {
+            else if(firstTouch == true){
+                if (lastTouch == true){
+                    if (GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite == RandomGadgetIce){
                         RandomGadgetIce_Orange.SetActive(true);
                     }
                 }
-                if (lastTouch == false)
-                {
-                    if (GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite == RandomGadgetIce)
-                    {
+                if (lastTouch == false){
+                    if (GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite == RandomGadgetIce){
                         RandomGadgetIce_Blue.SetActive(true);
                     }
                 }
             }
         }
-        if (collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
-        {
-            if (PlayerPrefs.GetInt("ShakeStatus") == 0)
-            {
+        if (collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2"){
+            if (PlayerPrefs.GetInt("ShakeStatus") == 0){
                 StartCoroutine(cameraShake.Shake(.15f, .3f));
             }
-            if (firstTouch == false)
-            {
+            if (firstTouch == false){
                 firstTouch = true;
             }
             audioSource.PlayOneShot(clip);
             Bounce(collision);
-            if (collision.gameObject.name == "Player 1")
-            {
-                if (lastTouch == true)
-                {
+            if (collision.gameObject.name == "Player 1"){
+                if (lastTouch == true){
                     lastTouch = false;
                 }
             }
-            else if (collision.gameObject.name == "Player 2")
-            {
-                if (lastTouch == false)
-                {
+            else if (collision.gameObject.name == "Player 2"){
+                if (lastTouch == false){
                     lastTouch = true;
                 }
             }
         }
-        else if(collision.gameObject.name == "Right")
-        {
+        else if(collision.gameObject.name == "Right"){
             audioSource1.PlayOneShot(clip2);
             audioSource1.PlayOneShot(clip4);
             scoreManager.Player1Goal();
@@ -209,8 +178,7 @@ public class BallBounce : MonoBehaviour
             StartCoroutine("GoalBlue");
             lastTouch = true;
         }
-        else if (collision.gameObject.name == "Left")
-        {
+        else if (collision.gameObject.name == "Left"){
             audioSource1.PlayOneShot(clip1);
             audioSource1.PlayOneShot(clip4);
             scoreManager.Player2Goal();
@@ -220,28 +188,24 @@ public class BallBounce : MonoBehaviour
             lastTouch = false;
         }
     }
-    IEnumerator GoalBlue()
-    {
+    IEnumerator GoalBlue(){
         ButImage.SetActive(true);
         ButTextBlue.SetActive(true);
         yield return new WaitForSeconds(3);
         ButImage.SetActive(false);
         ButTextBlue.SetActive(false);
     }
-    IEnumerator GoalOrange()
-    {
+    IEnumerator GoalOrange(){
         ButImage.SetActive(true);
         ButTextOrange.SetActive(true);
         yield return new WaitForSeconds(3);
         ButImage.SetActive(false);
         ButTextOrange.SetActive(false);
     }
-    IEnumerator BlueIce()
-    {
+    IEnumerator BlueIce(){
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
-        if (sceneName == "Pong Game")
-        {
+        if (sceneName == "Pong Game"){
             UIplayerGreen.SetActive(true);
             player2 = FindObjectOfType<Player2>();
             player2.racketSpeed = 1f;
@@ -250,8 +214,7 @@ public class BallBounce : MonoBehaviour
             player2.racketSpeed = 10f;
             GameObject.Find("Player 2").GetComponent<SpriteRenderer>().color = Color.white;
         }
-        else
-        {
+        else{
             UIplayerGreen.SetActive(true);
             player2Auto = FindObjectOfType<Player2Auto>();
             player2Auto.racketSpeed = 1f;
@@ -261,8 +224,7 @@ public class BallBounce : MonoBehaviour
             GameObject.Find("Player 2").GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
-    IEnumerator OrangeIce()
-    {
+    IEnumerator OrangeIce(){
         player1 = FindObjectOfType<Player1>();
         player1.racketSpeed = 1;
         UIplayerRed.SetActive(true);
@@ -271,55 +233,42 @@ public class BallBounce : MonoBehaviour
         player1.racketSpeed = 10;
         GameObject.Find("Player 1").GetComponent<SpriteRenderer>().color = Color.white;
     }
-    IEnumerator InizializeArbitre()
-    {
+    IEnumerator InizializeArbitre(){
         Arbitre.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         Arbitre.SetActive(false);
     }
-    IEnumerator RandomSounds()
-    {
+    IEnumerator RandomSounds(){
         yield return new WaitForSeconds(13); //    CHANGER POUR METTRE PLUS DE TEMPS ENVIRON 12secondes
         randomNumber = Random.Range(1, 8);
-        if (GameObject.Find("But") == false)
-        {
-            if (randomNumber == 1)
-            {
+        if (GameObject.Find("But") == false){
+            if (randomNumber == 1){
                 Commentary.PlayOneShot(C_clip_1);
             }
-            else if (randomNumber == 2)
-            {
+            else if (randomNumber == 2){
                 Commentary2.PlayOneShot(C_clip_2);
             }
-            else if (randomNumber == 3)
-            {
+            else if (randomNumber == 3){
                 Commentary3.PlayOneShot(C_clip_3);
             }
-            else if (randomNumber == 4)
-            {
+            else if (randomNumber == 4){
                 Commentary4.PlayOneShot(C_clip_4);
             }
-            else if (randomNumber == 5)
-            {
+            else if (randomNumber == 5){
                 Commentary5.PlayOneShot(C_clip_5);
             }
-            else if (randomNumber == 6)
-            {
+            else if (randomNumber == 6){
                 Commentary6.PlayOneShot(C_clip_6);
             }
-            else if (randomNumber == 7)
-            {
+            else if (randomNumber == 7){
                 Commentary7.PlayOneShot(C_clip_7);
             }
-            else
-            {
+            else{
                 print("Aucun son joué");
             }
             StartCoroutine("RandomSounds");
         }
-        else
-        {
-            //Restart Coroutine because sound was normally played during goal!
+        else{
             StartCoroutine("RandomSounds");
         }
 

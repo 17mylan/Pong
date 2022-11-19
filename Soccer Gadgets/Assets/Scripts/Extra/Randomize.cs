@@ -7,20 +7,17 @@ public class Randomize : MonoBehaviour
     public BoxCollider2D gridArea;
     public Sprite RandomGadgetIce;
     public float randomValue;
-    public void RandomizePosition()
-    {
+    public void RandomizePosition(){
         Bounds bounds = this.gridArea.bounds;
         float x = Random.Range(bounds.min.x, bounds.max.x);
         float y = Random.Range(bounds.min.y, bounds.max.y);
         this.transform.position = new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f);
         GameObject.Find("RandomGadget").GetComponent<SpriteRenderer>().sprite = RandomGadgetIce;
     }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
+    public void OnCollisionEnter2D(Collision2D collision){
         RandomizePosition();
     }
-    public void Start()
-    {
+    public void Start(){
         RandomizePosition();
     }
 }
